@@ -2,7 +2,7 @@
 FROM alpine:latest
 RUN mkdir /app
 
-COPY broker-service/broker-service-bin /app
+COPY ../broker-service/broker-service.bin /app
 
 # Run the server executable
-CMD [ "/app/broker-service-bin" ]
+CMD [ "/app/broker-service.bin" ]
