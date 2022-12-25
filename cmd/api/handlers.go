@@ -1,8 +1,6 @@
 package main
 
 import (
-	"github.com/aerosystems/broker-service/event"
-	"github.com/aerosystems/broker-service/logs"
 	"bytes"
 	"context"
 	"encoding/json"
@@ -12,6 +10,9 @@ import (
 	"net/http"
 	"net/rpc"
 	"time"
+
+	"github.com/aerosystems/broker-service/event"
+	"github.com/aerosystems/broker-service/logs"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -173,8 +174,8 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 	// call the auth-service; we need a request, so let's build one, and populate
 	// its body with the jsonData we just created. First we get the correct url for our
 	// auth service from our service map.
-	//authServiceURL := fmt.Sprintf("http://%s/signin", app.GetServiceURL("auth"))
-	authServiceURL := fmt.Sprintf("http://%s/v1/signin", "auth-service")
+	//authServiceURL := fmt.Sprintf("http://%s/login", app.GetServiceURL("auth"))
+	authServiceURL := fmt.Sprintf("http://%s/v1/login", "auth-service")
 
 	// now build the request and set header
 	request, err := http.NewRequest("POST", authServiceURL, bytes.NewBuffer(jsonData))
